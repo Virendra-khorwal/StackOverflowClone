@@ -1,10 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import QuestionListItem from "../src/components/QuestionListItem";
+import questions from "../data/questions";
 
 export default function Page() {
   return (
     <View style={styles.container}>
-      <QuestionListItem />
+      {/* <QuestionListItem question={questions.items[0]} /> */}
+      <FlatList 
+       data={questions.items}
+       renderItem={({item}) => <QuestionListItem question={item} />}
+       showsVerticalScrollIndicator={false}
+      />
+      
     </View>
   );
 }
