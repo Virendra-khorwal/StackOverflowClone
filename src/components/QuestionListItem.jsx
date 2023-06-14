@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Link, useRouter } from "expo-router";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 
 
 const QuestionListItem = ({question}) => {
+  const router = useRouter();
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={() => router.push(`/${question.question_id}`)}
+      style={styles.container}
+    >
       <Text style={styles.stats}>
         {question.score} votes • {question.answer_count} answers •{" "}
         {question.view_count} views
@@ -23,7 +28,7 @@ const QuestionListItem = ({question}) => {
           asked {new Date(question.creation_date * 1000).toDateString()}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 const styles = StyleSheet.create({
@@ -31,6 +36,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderBottomWidth: 0.5,
         borderBottomColor: 'lightgray',
+        
     },
     stats: {
         fontSize: 12,
