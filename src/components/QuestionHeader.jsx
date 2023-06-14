@@ -1,35 +1,32 @@
 
 import { StyleSheet, Text, View } from "react-native";
+import { decode } from "html-entities";
+import Markdown from "react-native-markdown-display";
 
 const QuestionHeader = ({ question }) => {
   return (
-    // <Link href={`/${question.question_id}`} asChild>
-      
-    // </Link>
     <View style={styles.container}>
-        <Text style={styles.title}>{question.title}</Text>
-        <Text style={styles.stats}>
-          {question.score} votes • {question.answer_count} answers •{" "}
-          {question.view_count} views
-        </Text>
+      <Text style={styles.title}>{decode(question.title)}</Text>
+      <Text style={styles.stats}>
+        {question.score} votes • {question.answer_count} answers •{" "}
+        {question.view_count} views
+      </Text>
 
-        <View style={styles.separator} />
-
-        <Text style={styles.body}>
-          {question.body_markdown}
-        </Text>
-        <View style={styles.tags}>
-          {question.tags.map((tag, index) => (
-            <Text style={styles.tag} key={index}>
-              {tag}
-            </Text>
-          ))}
-          <Text style={styles.time}>
-            {" "}
-            asked {new Date(question.creation_date * 1000).toDateString()}
+      <View style={styles.separator} />
+      
+      <Markdown>{decode(question.body_markdown)}</Markdown>
+      <View style={styles.tags}>
+        {question.tags.map((tag, index) => (
+          <Text style={styles.tag} key={index}>
+            {tag}
           </Text>
-        </View>
+        ))}
+        <Text style={styles.time}>
+          {" "}
+          asked {new Date(question.creation_date * 1000).toDateString()}
+        </Text>
       </View>
+    </View>
   );
 };
 
