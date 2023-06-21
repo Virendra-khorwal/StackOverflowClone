@@ -7,6 +7,7 @@ const RootLayout = () => {
     <Provider value={client}>
       <Stack>
         <Stack.Screen name="index" options={{ title: "Home" }} />
+        <Stack.Screen name="[id]" options={{ title: "Question" }} />
       </Stack>
     </Provider>
   );

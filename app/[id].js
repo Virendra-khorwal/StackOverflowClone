@@ -33,6 +33,7 @@ const QuestionDetailsPage = () => {
     );
   }
 
+
   const question = response.data.question.items[0];
 
   if (!question) {
@@ -46,7 +47,7 @@ const QuestionDetailsPage = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={question.answers.items}
+        data={question.answers}
         renderItem={({ item }) => <AnswerListItem answer={item} />}
         ListHeaderComponent={() => <QuestionHeader question={question} />}
       />
